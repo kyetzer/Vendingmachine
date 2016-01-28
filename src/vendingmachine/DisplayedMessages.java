@@ -21,6 +21,6 @@ public enum DisplayedMessages {
     public String BasicMessage() { return msg; }
     public String ModMessage(double inval){ 
         if (inval < 0.0) return msg + "     ";
-        else return msg + " $" + inval;
+        else return msg + " $" + util.customFormat("###.##",inval);
     } 
 }
