@@ -8,7 +8,9 @@ package vendingmachine;
 public enum DisplayedMessages {
     Insert    ("Insert Coins",0),     //  $0.00
     Price     ("Price       ",1),
-    Thankyou  ("Thank You   ",2);
+    Thankyou  ("Thank You   ",2),
+    Soldout   ("Sold Out    ",3),
+    Exactchang ("Exact Change Only",4);
 
     private final String msg; 
     private final int msgnumb;
