@@ -13,17 +13,14 @@ public class Vendingmachine {
     static private String[] strarr = {"Display Message","Total Amount","Coin Type","Item Purchased","Amount Returned","Return Money Button Pressed"};
     static private String displayedmessage="";
     static private Log msglog = new Log();
+    static private money mony = new money();
     
     public static void main(String[] args) {
         msglog.Setup();
         CoinSensingElement cse = new CoinSensingElement();
         
-//        msglog.Insertvals("1","2", "3", "4",  "5", "6");
-//        msglog.printoutvals(strarr);
-        
-        cse.setSize(50.0);
-        cse.setWgt(120.0);
-        System.out.println(cse.getSize() + "  " + cse.getWgt());
-    }
-    
+        System.out.println(mony.RetCoinAmt(5.0,5.0));
+        System.out.println(mony.RetCoinAmt(10.0,10.0));
+        System.out.println(mony.RetCoinAmt(25.0,25.0));
+    } 
 }
