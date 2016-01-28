@@ -57,4 +57,39 @@ public class money {
         }
         return retval;
     }
+    
+    public void Increaseamt(double inval){
+     coinsadded++;
+     this.accumamount= this.accumamount+inval; 
+   }
+   
+   public void Changeamttozero(){
+     this.accumamount=0;
+   }
+   
+   public void SubtractItemCostFromAmnt(double inval){
+     this.accumamount=this.accumamount-inval;
+   }
+   
+   public double RetAmount(){
+     return this.accumamount;
+   }
+   
+   public void ReadCoinAmtIncamt(double wgt,double size){
+     Increaseamt(RetCoinAmt(wgt,size));  
+   }
+   
+   public double RetDiffBetweenCostInert(int but){
+     double tmpv;
+     
+     tmpv = RetItemCost(but);
+     return this.accumamount-RetItemCost(but);
+   }
+   
+   public void SubtractItemCostFromAmnt(int but){
+     double tmpv;
+     
+     tmpv = RetItemCost(but);
+     this.accumamount=this.accumamount-tmpv;
+   }
 }
