@@ -16,8 +16,17 @@ public class Vendingmachine {
     
     public static void main(String[] args) {
         msglog.Setup();
-        msglog.Insertvals("1","2", "3", "4",  "5", "6");
-        msglog.printoutvals(strarr);
+//        msglog.Insertvals("1","2", "3", "4",  "5", "6");
+//        msglog.printoutvals(strarr);
+        
+        for (Coins c : Coins.values()){
+//           if ((c.weight() == 5.0) && (c.size() == 5.0)){
+               System.out.println(c.weight());
+               System.out.println(c.size());
+               System.out.println(c.dollaramt());
+               System.out.println(c.cname());
+//           }
+        }
     }
     
 }
