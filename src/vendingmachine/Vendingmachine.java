@@ -15,21 +15,23 @@ public class Vendingmachine {
     static private Log msglog = new Log();
     static private money mony = new money();
     
+    static String RetProperMessage(int num,double inval){
+        String retval="";
+        
+        for (DisplayedMessages dm : DisplayedMessages.values()){
+           if ((dm.Msgnumb() == num)){
+               retval = dm.ModMessage(inval);
+               break;
+           }
+        }
+        return retval;
+    }
+    
     public static void main(String[] args) {
         msglog.Setup();
-        CoinSensingElement cse = new CoinSensingElement();
         
-        cse.setWgt(5);
-        cse.setSize(5);
-        mony.ReadCoinAmtIncamt(cse.getWgt(), cse.getSize());
-        cse.setWgt(25);
-        cse.setSize(25);
-        mony.ReadCoinAmtIncamt(cse.getWgt(), cse.getSize());
-        cse.setWgt(10);
-        cse.setSize(10);
-        mony.ReadCoinAmtIncamt(cse.getWgt(), cse.getSize());
-        
-        System.out.println(mony.RetAmount());
-     
+        System.out.println(RetProperMessage(0,0.0));
+        System.out.println(RetProperMessage(1,0.0));
+        System.out.println(RetProperMessage(2,0.0));
     } 
 }
