@@ -33,4 +33,28 @@ public class money {
         }
         return retval;
     }
+    
+    String RetCoiname(double wgt,double size){
+        String retval="";
+        
+        for (Coins c : Coins.values()){
+           if ((c.weight() == wgt) && (c.size() == size)){
+               retval = c.cname();
+               break;
+           }
+        }
+        return retval;
+    }
+    
+    String RetItemname(int but){
+        String retval="";
+        
+        for (Products p : Products.values()){
+           if ((p.but() == but)){
+               retval = p.cname();
+               break;
+           }
+        }
+        return retval;
+    }
 }
