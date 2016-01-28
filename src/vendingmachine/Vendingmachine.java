@@ -19,11 +19,17 @@ public class Vendingmachine {
         msglog.Setup();
         CoinSensingElement cse = new CoinSensingElement();
         
-        System.out.println(mony.RetCoiname(5.0, 5.0));
-        System.out.println(mony.RetCoiname(10, 10));
-        System.out.println(mony.RetCoiname(25, 25));
-        System.out.println(mony.RetItemname(0));
-        System.out.println(mony.RetItemname(1));
-        System.out.println(mony.RetItemname(2));
+        cse.setWgt(5);
+        cse.setSize(5);
+        mony.ReadCoinAmtIncamt(cse.getWgt(), cse.getSize());
+        cse.setWgt(25);
+        cse.setSize(25);
+        mony.ReadCoinAmtIncamt(cse.getWgt(), cse.getSize());
+        cse.setWgt(10);
+        cse.setSize(10);
+        mony.ReadCoinAmtIncamt(cse.getWgt(), cse.getSize());
+        
+        System.out.println(mony.RetAmount());
+     
     } 
 }
