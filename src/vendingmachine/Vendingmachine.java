@@ -27,11 +27,86 @@ public class Vendingmachine {
         return retval;
     }
     
+    static void CoinInsertEvent(money mony,CoinSensingElement cse,double wgt,double size){
+       cse.setWgt(wgt);
+       cse.setSize(size);
+       mony.ReadCoinAmtIncamt(cse.getWgt(), cse.getSize()); 
+       displayedmessage=RetProperMessage(0,mony.RetAmount()); 
+       msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), mony.RetCoiname(cse.getWgt(), cse.getSize()), "------", "------", "------");
+    }
+    
+    static void KeyPadButtonPressEvent(int but,money mony,CoinSensingElement cse){
+      double diff;
+      DisplayedMessages dms;
+      //    buttons   0 - cola,   1 - chips,  2 - candy
+      diff = mony.RetDiffBetweenCostInert(but);
+      if (diff >= 0.0){
+        displayedmessage=RetProperMessage(2,-1.0); 
+        mony.SubtractItemCostFromAmnt(but);
+        msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", mony.RetItemname(but),  "" + util.customFormat("###.##",diff), "------");
+        displayedmessage=RetProperMessage(0,0.0); 
+        mony.Changeamttozero();
+        msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", "------",  "------", "------");
+      }
+      else{
+        displayedmessage=RetProperMessage(1,mony.RetItemCost(but)); 
+        msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", "------",  "------", "------");  
+      }
+    }
+    
+    static void RetMoneyButtonPressEvent(money mony){
+      double howmuchreturned = mony.RetAmount();
+      displayedmessage=RetProperMessage(0,0.0); 
+      mony.Changeamttozero();
+      msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", "------",  "" + util.customFormat("###.##",howmuchreturned), "true");
+    }
+    
     public static void main(String[] args) {
         msglog.Setup();
+        money mony = new money();
+      CoinSensingElement cse = new CoinSensingElement();
+      cse.setWgt(5.0);
+      cse.setSize(5.0);
+      displayedmessage=RetProperMessage(0,0.0);
+      msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", "------",  "------", "------");
+      
+      CoinInsertEvent(mony,cse,5.0,5.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      KeyPadButtonPressEvent(0,mony,cse);
+      CoinInsertEvent(mony,cse,10.0,10.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      KeyPadButtonPressEvent(1,mony,cse);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      KeyPadButtonPressEvent(2,mony,cse);
+      CoinInsertEvent(mony,cse,10.0,10.0);
+      CoinInsertEvent(mony,cse,10.0,10.0);
+      CoinInsertEvent(mony,cse,10.0,10.0);
+      CoinInsertEvent(mony,cse,5.0,5.0);
+      CoinInsertEvent(mony,cse,5.0,5.0);
+      CoinInsertEvent(mony,cse,5.0,5.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      RetMoneyButtonPressEvent(mony);
+      CoinInsertEvent(mony,cse,10.0,10.0);
+      CoinInsertEvent(mony,cse,10.0,10.0);
+      CoinInsertEvent(mony,cse,10.0,10.0);
+      CoinInsertEvent(mony,cse,5.0,5.0);
+      CoinInsertEvent(mony,cse,5.0,5.0);
+      CoinInsertEvent(mony,cse,5.0,5.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      CoinInsertEvent(mony,cse,25.0,25.0);
+      KeyPadButtonPressEvent(0,mony,cse);
+      
+      msglog.printoutvals(strarr);
         
-        System.out.println(RetProperMessage(0,0.0));
-        System.out.println(RetProperMessage(1,0.0));
-        System.out.println(RetProperMessage(2,0.0));
     } 
 }
