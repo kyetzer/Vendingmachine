@@ -16,16 +16,14 @@ public class Vendingmachine {
     
     public static void main(String[] args) {
         msglog.Setup();
+        CoinSensingElement cse = new CoinSensingElement();
+        
 //        msglog.Insertvals("1","2", "3", "4",  "5", "6");
 //        msglog.printoutvals(strarr);
         
-        for (DisplayedMessages c : DisplayedMessages.values()){
-//           if ((c.weight() == 5.0) && (c.size() == 5.0)){
-               System.out.println(c.BasicMessage());
-               System.out.println(c.ModMessage(06.0));
-               System.out.println(c.Msgnumb());
-//           }
-        }
+        cse.setSize(50.0);
+        cse.setWgt(120.0);
+        System.out.println(cse.getSize() + "  " + cse.getWgt());
     }
     
 }
