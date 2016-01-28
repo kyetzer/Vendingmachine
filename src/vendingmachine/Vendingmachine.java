@@ -19,8 +19,8 @@ public class Vendingmachine {
         msglog.Setup();
         CoinSensingElement cse = new CoinSensingElement();
         
-        System.out.println(mony.RetCoinAmt(5.0,5.0));
-        System.out.println(mony.RetCoinAmt(10.0,10.0));
-        System.out.println(mony.RetCoinAmt(25.0,25.0));
+        System.out.println(mony.RetItemCost(0));
+        System.out.println(mony.RetItemCost(1));
+        System.out.println(mony.RetItemCost(2));
     } 
 }
