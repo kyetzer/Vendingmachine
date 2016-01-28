@@ -19,11 +19,11 @@ public class Vendingmachine {
 //        msglog.Insertvals("1","2", "3", "4",  "5", "6");
 //        msglog.printoutvals(strarr);
         
-        for (Products c : Products.values()){
+        for (DisplayedMessages c : DisplayedMessages.values()){
 //           if ((c.weight() == 5.0) && (c.size() == 5.0)){
-               System.out.println(c.but());
-               System.out.println(c.cname());
-               System.out.println(c.cost());
+               System.out.println(c.BasicMessage());
+               System.out.println(c.ModMessage(06.0));
+               System.out.println(c.Msgnumb());
 //           }
         }
     }
