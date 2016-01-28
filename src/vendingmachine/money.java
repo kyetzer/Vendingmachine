@@ -21,4 +21,16 @@ public class money {
         }
         return retval;
     }
+   
+    Double RetItemCost(int but){
+        Double retval=0.0;
+        
+        for (Products p : Products.values()){
+           if ((p.but() == but)){
+               retval = p.cost();
+               break;
+           }
+        }
+        return retval;
+    }
 }
