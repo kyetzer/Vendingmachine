@@ -120,6 +120,17 @@ public class BasicTest {
                assertEquals(money.RetCoinAmt(cost[i],cost[i]),val[i],0.01);
         }
     }
+    
+    @Test
+    public void TestItemCostPerButPress(){
+        int i;
+        double[] cost = {1.0,0.50,0.65};
+        
+        System.out.println("* MachineVendingTest:          Item Cost Given Keypad button number");
+        for (i=0;i<cost.length;i++){       
+           assertEquals(money.RetItemCost(i),cost[i],0.01);
+        }
+    }
 
     @Ignore
     @Test(timeout = 1000)
