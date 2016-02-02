@@ -22,25 +22,21 @@ public class BasicTest {
     public BasicTest() {
     }
 
-    @Ignore
     @BeforeClass
     public static void setUpClass() throws Exception {
         System.out.println("* MachineVendingTest:                     @BeforeClass method");
     }
 
-    @Ignore
     @AfterClass
     public static void tearDownClass() throws Exception {
         System.out.println("* MachineVendingTest:                     @AfterClass method");
     }
 
-    @Ignore
     @Before
     public void setUp() {
         System.out.println("* MachineVendingTest:                     @Before Test method");
     }
 
-    @Ignore
     @After
     public void tearDown() {
         System.out.println("* MachineVendingTest:                     @After Test method");
