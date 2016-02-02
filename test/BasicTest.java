@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 import vendingmachine.Coins;
 import vendingmachine.DisplayedMessages;
 import vendingmachine.Products;
+import vendingmachine.money;
 import vendingmachine.util;
 
 public class BasicTest {
@@ -103,6 +104,20 @@ public class BasicTest {
         System.out.println("* MachineVendingTest:          Util Floating Point Formatter");
         for (i=0;i<cost.length;i++){      
                assertEquals(util.customFormat("###.##", cost[i]),strval[i]);
+        }
+    }
+    
+    @Test
+    public void TestRetCoinValue(){
+        int i;
+        double[] cost = {0.0,5.0,10.0,25.0};
+        double[] val = {0.0,0.05,0.10,0.25};
+        String[] strval = {"10","500.05","11.66"};
+      
+        System.out.println("* MachineVendingTest:          Coin amount given size and weight");
+     
+        for (i=0;i<cost.length;i++){
+               assertEquals(money.RetCoinAmt(cost[i],cost[i]),val[i],0.01);
         }
     }
 
