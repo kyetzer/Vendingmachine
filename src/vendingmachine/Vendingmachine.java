@@ -15,7 +15,7 @@ public class Vendingmachine {
     static private Log msglog = new Log();
     static private money mony = new money();
     
-    static String RetProperMessage(int num,double inval){
+    public static String RetProperMessage(int num,double inval){
         String retval="";
         
         for (DisplayedMessages dm : DisplayedMessages.values()){
@@ -27,7 +27,7 @@ public class Vendingmachine {
         return retval;
     }
     
-    static void CoinInsertEvent(money mony,CoinSensingElement cse,double wgt,double size){
+    public static void CoinInsertEvent(money mony,CoinSensingElement cse,double wgt,double size){
        cse.setWgt(wgt);
        cse.setSize(size);
        mony.ReadCoinAmtIncamt(cse.getWgt(), cse.getSize()); 
@@ -35,18 +35,26 @@ public class Vendingmachine {
        msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), mony.RetCoiname(cse.getWgt(), cse.getSize()), "------", "------", "------");
     }
     
-    static void KeyPadButtonPressEvent(int but,money mony,CoinSensingElement cse){
+    public static void KeyPadButtonPressEvent(int but,money mony,CoinSensingElement cse){
       double diff;
+      boolean avail;
       DisplayedMessages dms;
       //    buttons   0 - cola,   1 - chips,  2 - candy
       diff = mony.RetDiffBetweenCostInert(but);
+      avail = mony.RetItemAvail(but);
       if (diff >= 0.0){
-        displayedmessage=RetProperMessage(2,-1.0); 
-        mony.SubtractItemCostFromAmnt(but);
-        msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", mony.RetItemname(but),  "" + util.customFormat("###.##",diff), "------");
-        displayedmessage=RetProperMessage(0,0.0); 
-        mony.Changeamttozero();
-        msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", "------",  "------", "------");
+        if (avail){
+          displayedmessage=RetProperMessage(2,-1.0); 
+          mony.SubtractItemCostFromAmnt(but);
+          msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", mony.RetItemname(but),  "" + util.customFormat("###.##",diff), "------");
+          displayedmessage=RetProperMessage(0,0.0); 
+          mony.Changeamttozero();
+          msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", "------",  "------", "------");
+        }
+        else{
+          displayedmessage=RetProperMessage(3,-1.0);
+          msglog.Insertvals(displayedmessage,"" + util.customFormat("###.##",mony.RetAmount()), "------", "------",  "------", "------");
+        }
       }
       else{
         displayedmessage=RetProperMessage(1,mony.RetItemCost(but)); 
@@ -54,7 +62,7 @@ public class Vendingmachine {
       }
     }
     
-    static void RetMoneyButtonPressEvent(money mony){
+    public static void RetMoneyButtonPressEvent(money mony){
       double howmuchreturned = mony.RetAmount();
       displayedmessage=RetProperMessage(0,0.0); 
       mony.Changeamttozero();
