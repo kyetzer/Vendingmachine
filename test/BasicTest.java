@@ -166,6 +166,20 @@ public class BasicTest {
         }
     }
 
+    @Test
+    public void TestInreaseDollarAmount(){
+        int i;
+        double val=0.0;
+        double[] names = {0.05,0.25,0.25,0.10};
+        money mon = new money();
+        
+        System.out.println("* MachineVendingTest:          Total Dollar Value");
+        for (i=0;i<names.length;i++){
+            mon.Increaseamt(names[i]);
+        }
+        assertEquals(mon.RetAmount(),0.65,0.01);
+    }
+    
     @Ignore
     @Test(timeout = 1000)
     public void testWithTimeout() {
