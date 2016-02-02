@@ -167,6 +167,35 @@ public class BasicTest {
     }
 
     @Test
+    public void TestChangeDollarAmount(){
+        int i;
+        double val=0.0;
+        double[] names = {0.05,0.25,0.25,0.10};
+        money mon = new money();
+        
+        System.out.println("* MachineVendingTest:          Total Dollar Value");
+        for (i=0;i<names.length;i++){
+            mon.Increaseamt(names[i]);
+        }
+        assertEquals(mon.RetAmount(),0.65,0.01);
+        mon.SubtractItemCostFromAmnt(0.30);
+        assertEquals(mon.RetAmount(),0.35,0.01);
+        mon.Changeamttozero();
+        assertEquals(mon.RetAmount(),0.0,0.0);
+        mon.ReadCoinAmtIncamt(5.0, 5.0);            //  read in and store Nickel value
+        assertEquals(mon.RetAmount(),0.05,0.01);
+        mon.ReadCoinAmtIncamt(10.0, 10.0);            //  read in and store Dime value
+        assertEquals(mon.RetAmount(),0.15,0.01);
+        mon.ReadCoinAmtIncamt(25.0, 25.0);            //  read in and store Quarter value
+        assertEquals(mon.RetAmount(),0.40,0.01);
+        mon.Increaseamt(0.25);
+        mon.Increaseamt(0.25);
+        mon.SubtractItemCostFromAmnt(1);
+        assertEquals(mon.RetAmount(),0.40,0.01);
+    }
+    
+    @Ignore
+    @Test
     public void TestInreaseDollarAmount(){
         int i;
         double val=0.0;
