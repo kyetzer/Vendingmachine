@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import vendingmachine.Coins;
 import vendingmachine.DisplayedMessages;
 
 public class BasicTest {
@@ -48,6 +49,25 @@ public class BasicTest {
                assertEquals(dm.ModMessage(0.5),msgs[num] + " $0.5");
                assertEquals(dm.name(),names[num]);
                assertEquals(dm.Msgnumb(),num);
+           }
+           num++;
+        }
+    }
+    
+    @Test
+    public void TestCoinEnum(){
+        double[] amt = {0.05,0.10,0.25,0.0};
+        double[] wgt = {5.0,10.0,25.0,0.0};
+        double[] size = {5.0,10.0,25.0,0.0};
+        String[] names = {"NICKEL","DIME","QUARTER","OTHER"};
+        int num=0;
+        System.out.println("* MachineVendingTest:          Coin  Enum  Test");
+        for (Coins dm : Coins.values()){       
+           if ((dm.name() == names[num])){                                    
+               assertEquals(dm.dollaramt(),amt[num],0.01);
+               assertEquals(dm.size(),size[num],0.01);
+               assertEquals(dm.weight(),wgt[num],0.01);
+               assertEquals(dm.name(),names[num]);
            }
            num++;
         }
