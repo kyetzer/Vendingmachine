@@ -131,6 +131,18 @@ public class BasicTest {
            assertEquals(money.RetItemCost(i),cost[i],0.01);
         }
     }
+    
+    @Test
+    public void TestCoinName(){
+        int i;
+        String[] cname = {"NICKEL","DIME","QUARTER","OTHER"};
+        double[] sizewgt = {5.0,10.0,25.0,0.0};
+        
+        System.out.println("* MachineVendingTest:          Coin name given size and weight");
+        for (i=0;i<cname.length;i++){       
+           assertEquals(money.RetCoiname(sizewgt[i],sizewgt[i]),cname[i]);
+        }
+    }
 
     @Ignore
     @Test(timeout = 1000)
