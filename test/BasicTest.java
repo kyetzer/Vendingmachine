@@ -143,6 +143,17 @@ public class BasicTest {
            assertEquals(money.RetCoiname(sizewgt[i],sizewgt[i]),cname[i]);
         }
     }
+    
+    @Test
+    public void TestItemNamePerButPress(){
+        int i;
+        String[] names = {"COLA","CHIPS","CANDY"};
+        
+        System.out.println("* MachineVendingTest:          Item Cost Given Keypad button number");
+        for (i=0;i<names.length;i++){       
+           assertEquals(money.RetItemname(i),names[i]);
+        }
+    }
 
     @Ignore
     @Test(timeout = 1000)
