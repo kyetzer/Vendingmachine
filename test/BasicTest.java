@@ -154,6 +154,17 @@ public class BasicTest {
            assertEquals(money.RetItemname(i),names[i]);
         }
     }
+    
+    @Test
+    public void TestIfItemisAvailable(){
+        int i;
+        boolean[] names = {true,true,true};
+        
+        System.out.println("* MachineVendingTest:          Item is available");
+        for (i=0;i<names.length;i++){       
+           assertEquals(money.RetItemAvail(i),names[i]);
+        }
+    }
 
     @Ignore
     @Test(timeout = 1000)
