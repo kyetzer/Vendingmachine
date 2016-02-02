@@ -8,6 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import vendingmachine.Coins;
 import vendingmachine.DisplayedMessages;
+import vendingmachine.Products;
 
 public class BasicTest {
 
@@ -67,6 +68,25 @@ public class BasicTest {
                assertEquals(dm.dollaramt(),amt[num],0.01);
                assertEquals(dm.size(),size[num],0.01);
                assertEquals(dm.weight(),wgt[num],0.01);
+               assertEquals(dm.name(),names[num]);
+           }
+           num++;
+        }
+    }
+    
+    @Test
+    public void TestProductEnum(){
+        double[] cost = {1.0,0.50,0.65};
+        int[] but = {0,1,2};
+        boolean[] avail = {true,true,true};
+        String[] names = {"COLA","CHIPS","CANDY"};
+        int num=0;
+        System.out.println("* MachineVendingTest:          Product  Enum  Test");
+        for (Products dm : Products.values()){       
+           if ((dm.name() == names[num])){                                    
+               assertEquals(dm.cost(),cost[num],0.01);
+               assertEquals(dm.but(),but[num]);
+               assertEquals(dm.itemavail(),avail[num]);
                assertEquals(dm.name(),names[num]);
            }
            num++;
