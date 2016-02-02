@@ -10,7 +10,7 @@ public class money {
    private int coinsadded=0;
    private int coinsrejected=0;
    
-   Double RetCoinAmt(double wgt,double size){
+   public Double RetCoinAmt(double wgt,double size){
         Double retval=0.0;
         
         for (Coins c : Coins.values()){
@@ -22,7 +22,7 @@ public class money {
         return retval;
     }
    
-    Double RetItemCost(int but){
+    public Double RetItemCost(int but){
         Double retval=0.0;
         
         for (Products p : Products.values()){
@@ -34,7 +34,7 @@ public class money {
         return retval;
     }
     
-    String RetCoiname(double wgt,double size){
+    public String RetCoiname(double wgt,double size){
         String retval="";
         
         for (Coins c : Coins.values()){
@@ -46,12 +46,24 @@ public class money {
         return retval;
     }
     
-    String RetItemname(int but){
+    public String RetItemname(int but){
         String retval="";
         
         for (Products p : Products.values()){
            if ((p.but() == but)){
                retval = p.cname();
+               break;
+           }
+        }
+        return retval;
+    }
+    
+    public boolean RetItemAvail(int but){
+        boolean retval=false;
+        
+        for (Products p : Products.values()){
+           if ((p.but() == but)){
+               retval = p.itemavail();
                break;
            }
         }
