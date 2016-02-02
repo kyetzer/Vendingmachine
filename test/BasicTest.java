@@ -6,9 +6,14 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import vendingmachine.CoinSensingElement;
 import vendingmachine.Coins;
 import vendingmachine.DisplayedMessages;
+import vendingmachine.Log;
 import vendingmachine.Products;
+import vendingmachine.Vendingmachine;
+import static vendingmachine.Vendingmachine.CoinInsertEvent;
+import static vendingmachine.Vendingmachine.KeyPadButtonPressEvent;
 import vendingmachine.money;
 import vendingmachine.util;
 
@@ -196,17 +201,45 @@ public class BasicTest {
     
     @Ignore
     @Test
-    public void TestInreaseDollarAmount(){
+    public void TestVendingMachineMainProg(){
         int i;
         double val=0.0;
-        double[] names = {0.05,0.25,0.25,0.10};
-        money mon = new money();
+        Log msglog = new Log();
+        msglog.Setup();
+        money mony = new money();
+        CoinSensingElement cse = new CoinSensingElement();
+        Vendingmachine vm = new Vendingmachine();
         
-        System.out.println("* MachineVendingTest:          Total Dollar Value");
-        for (i=0;i<names.length;i++){
-            mon.Increaseamt(names[i]);
-        }
-        assertEquals(mon.RetAmount(),0.65,0.01);
+        System.out.println("* MachineVendingTest:          Machine Main Program");
+        vm.CoinInsertEvent(mony,cse,5.0,5.0);
+        assertEquals(mony.RetAmount(),0.05,0.01);
+        
+        vm.CoinInsertEvent(mony,cse,5.0,5.0);
+        vm.CoinInsertEvent(mony,cse,25.0,25.0);
+        vm.CoinInsertEvent(mony,cse,25.0,25.0);
+        assertEquals(mony.RetAmount(),0.60,0.01);
+        vm.KeyPadButtonPressEvent(0,mony,cse);
+        assertEquals(mony.RetAmount(),0.60,0.01);
+        
+        vm.CoinInsertEvent(mony,cse,10.0,10.0);
+        vm.CoinInsertEvent(mony,cse,25.0,25.0);
+        vm.CoinInsertEvent(mony,cse,25.0,25.0);
+        assertEquals(mony.RetAmount(),1.20,0.01);
+        vm.KeyPadButtonPressEvent(1,mony,cse);
+        assertEquals(mony.RetAmount(),0.70,0.01);
+        
+        vm.CoinInsertEvent(mony,cse,25.0,25.0);
+        vm.CoinInsertEvent(mony,cse,25.0,25.0);
+        vm.CoinInsertEvent(mony,cse,25.0,25.0);
+        vm.CoinInsertEvent(mony,cse,25.0,25.0);
+        assertEquals(mony.RetAmount(),1.70,0.01);
+        vm.KeyPadButtonPressEvent(2,mony,cse);
+        assertEquals(mony.RetAmount(),1.05,0.01);
+        
+        vm.CoinInsertEvent(mony,cse,10.0,10.0);
+        vm.CoinInsertEvent(mony,cse,10.0,10.0);
+        vm.CoinInsertEvent(mony,cse,10.0,10.0);
+        assertEquals(mony.RetAmount(),1.35,0.01);
     }
     
     @Ignore
